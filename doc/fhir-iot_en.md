@@ -140,6 +140,14 @@ Each module was configured and debug blocks were placed to see the data flow and
 
 When the data reaches the developed IoT device, it is this device that performs the temperature measurement and after pressing a button returns, the data it received as an MQTT message in addition to the temperature and humidity measurements.
 For transmission via mqtt, two topics were used, lafe/fhir2mqtt – for sending data to the device/s and lafe/mqtt2fhir for the opposite action.
+
+It can also be observed in the following images, the data transmission and the connections of the IoT device on the RabbitMQ server with the MQTT plugin activated.
+
+![fhir-fhandango-1](imagenes/rabbit_stats.PNG)
+![fhir-fhandango-1](imagenes/rabbit_stats_2.PNG)
+![fhir-fhandango-1](imagenes/rabbit_queues.PNG)
+
+
 The IoT device was programmed using C++ and the VSCode code editor with the Platformio plugin. The source code can be found in the pcsp-hulafe repository on github.
 
 Several tests were carried out, data was sent in a simple way with mqtt, and FHIR was even used from the same IoT device, sending resources similar to the following.

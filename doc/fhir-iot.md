@@ -138,6 +138,13 @@ Cuando llegan los datos hasta el dispositivo IOT desarrollado, es este dispositi
 Para la trasmisión vía mqtt se usaron dos temas, lafe/fhir2mqtt – para el envío de datos al dispositivo/s y lafe/mqtt2fhir para la acción contraria.
 El dispositivo IOT se programó usando C++ y el editor de código VSCode con el plugin de Platformio. El código fuente se puede encontrar en el repositorio de pcsp-hulafe de github.
 
+Se puede observar también en las siguientes imágenes, la transmisión de los datos y las conexiones del dispositivo IOT en el servidor Rabbitmq con el plugin de MQTT activado.
+
+![fhir-fhandango-1](imagenes/rabbit_stats.PNG)
+![fhir-fhandango-1](imagenes/rabbit_stats_2.PNG)
+![fhir-fhandango-1](imagenes/rabbit_queues.PNG)
+
+
 Se realizaron varias pruebas, se enviaron datos de manera sencilla con mqtt, e incluso se utilizó FHIR desde el mismo dispositivo IOT, enviando recursos similares al siguiente.
 
 ```json
@@ -214,6 +221,7 @@ Se realizaron varias pruebas, se enviaron datos de manera sencilla con mqtt, e i
 Finalmente, obtenemos las mediciones del dispositivo IOT a través de un broker MQTT configurad usando las herramientas básics que nos proporciona la aplicación Node-Red. 
 
 Así podemos monitorizar los datos de manera sencilla y validar los mismos en caso de necesitarlo, todo esto antes de introducirlos en el registro correspondiente del servidor FHIR. Esto nos permite también automatizar acciones al vuelo, envío de mensajes, etc.,
+
 
 ## Conclusiones
 
