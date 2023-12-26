@@ -1,0 +1,401 @@
+[
+    {
+        "id": "ca67d6289d6450b2",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "664066764242af22",
+        "type": "mqtt-broker",
+        "name": "Mosquitto Raspberry",
+        "broker": "192.168.1.130",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "2b83bb0eda2f023a",
+        "type": "mqtt-broker",
+        "name": "Rabbit-mqtt",
+        "broker": "192.168.1.140",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "a012b79e223431e6",
+        "type": "debug",
+        "z": "ca67d6289d6450b2",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 700,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "bee05381d3e848ca",
+        "type": "http request",
+        "z": "ca67d6289d6450b2",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://hapi.fhir.org/baseR4/Patient",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 370,
+        "y": 80,
+        "wires": [
+            [
+                "7feb6805e8d85990"
+            ]
+        ]
+    },
+    {
+        "id": "e5d81816b58c3b4c",
+        "type": "debug",
+        "z": "ca67d6289d6450b2",
+        "name": "debug 2",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 700,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "7feb6805e8d85990",
+        "type": "json",
+        "z": "ca67d6289d6450b2",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 550,
+        "y": 80,
+        "wires": [
+            [
+                "e5d81816b58c3b4c"
+            ]
+        ]
+    },
+    {
+        "id": "873aa16724754bd5",
+        "type": "debug",
+        "z": "ca67d6289d6450b2",
+        "name": "debug 3",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 680,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "9f3762d05ccf283a",
+        "type": "inject",
+        "z": "ca67d6289d6450b2",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "FhirPatientId",
+        "payload": "592912",
+        "payloadType": "num",
+        "x": 150,
+        "y": 340,
+        "wires": [
+            [
+                "e64b217f57d3bf25"
+            ]
+        ]
+    },
+    {
+        "id": "b3cd11997af15cec",
+        "type": "debug",
+        "z": "ca67d6289d6450b2",
+        "name": "debug 4",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 740,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "e860648116cdba93",
+        "type": "fh-resource filter",
+        "z": "ca67d6289d6450b2",
+        "resourceType": "Patient",
+        "x": 500,
+        "y": 420,
+        "wires": [
+            [
+                "b3cd11997af15cec",
+                "f950c28bd7e11289"
+            ]
+        ]
+    },
+    {
+        "id": "e64b217f57d3bf25",
+        "type": "fh-query",
+        "z": "ca67d6289d6450b2",
+        "nquery": "Hapi Server Query",
+        "uquery": "https://hapi.fhir.org/baseR4",
+        "x": 380,
+        "y": 340,
+        "wires": [
+            [
+                "e860648116cdba93",
+                "873aa16724754bd5"
+            ]
+        ]
+    },
+    {
+        "id": "b1d8a82adcd7e8b6",
+        "type": "fh-search",
+        "z": "ca67d6289d6450b2",
+        "name": "",
+        "url": "https://hapi.fhir.org/baseR4/Patient",
+        "method": "GET",
+        "x": 380,
+        "y": 180,
+        "wires": [
+            [
+                "a012b79e223431e6"
+            ]
+        ]
+    },
+    {
+        "id": "dd77981742a251aa",
+        "type": "debug",
+        "z": "ca67d6289d6450b2",
+        "name": "debug 5",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 480,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "f950c28bd7e11289",
+        "type": "fh-reducer",
+        "z": "ca67d6289d6450b2",
+        "field1": "resource.name",
+        "field2": "fullUrl",
+        "field3": "resource.resourceType",
+        "field4": "",
+        "x": 290,
+        "y": 540,
+        "wires": [
+            [
+                "dd77981742a251aa",
+                "489d39a3a4c4c993",
+                "8c0defedf2365079",
+                "300239030171b493"
+            ]
+        ]
+    },
+    {
+        "id": "489d39a3a4c4c993",
+        "type": "fh-reducer",
+        "z": "ca67d6289d6450b2",
+        "field1": "resource.name",
+        "field2": "",
+        "field3": "",
+        "field4": "",
+        "x": 470,
+        "y": 660,
+        "wires": [
+            [
+                "da0889919e35673b",
+                "d4503fe0f629d518"
+            ]
+        ]
+    },
+    {
+        "id": "da0889919e35673b",
+        "type": "debug",
+        "z": "ca67d6289d6450b2",
+        "name": "debug 6",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 640,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "8c0defedf2365079",
+        "type": "fh-planner",
+        "z": "ca67d6289d6450b2",
+        "field1": "resource.resourceType",
+        "field2": "",
+        "field3": "",
+        "field4": "",
+        "x": 480,
+        "y": 580,
+        "wires": [
+            [
+                "ba9424e3c4cdaa9c"
+            ]
+        ]
+    },
+    {
+        "id": "ba9424e3c4cdaa9c",
+        "type": "debug",
+        "z": "ca67d6289d6450b2",
+        "name": "debug 7",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 640,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "d4503fe0f629d518",
+        "type": "mqtt out",
+        "z": "ca67d6289d6450b2",
+        "name": "",
+        "topic": "test/topic",
+        "qos": "1",
+        "retain": "true",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "2b83bb0eda2f023a",
+        "x": 760,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "300239030171b493",
+        "type": "fh-reducer",
+        "z": "ca67d6289d6450b2",
+        "field1": "resource.resourceType",
+        "field2": "",
+        "field3": "",
+        "field4": "",
+        "x": 470,
+        "y": 720,
+        "wires": [
+            [
+                "d4503fe0f629d518",
+                "efd1be93b66cc8cc"
+            ]
+        ]
+    },
+    {
+        "id": "efd1be93b66cc8cc",
+        "type": "debug",
+        "z": "ca67d6289d6450b2",
+        "name": "debug 8",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 640,
+        "y": 760,
+        "wires": []
+    }
+]

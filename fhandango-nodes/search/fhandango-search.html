@@ -1,0 +1,48 @@
+<script type="text/javascript">
+    RED.nodes.registerType('fh-search', {
+        category: 'fhir fhandango',
+        color: '#a6bbcf',
+        defaults: {
+            name: { value: "" },
+            url: { value: "" },
+            method: { value: "GET" },
+            // Agrega más propiedades personalizadas aquí si es necesario
+        },
+        inputs: 1,
+        outputs: 1,
+        icon: "white-globe.svg",
+        label: function() {
+            return this.name || "fh-search";
+        }
+    });
+</script>
+<script type="text/html" data-template-name="fh-search">
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag" aria-hidden="true"></i> Node name</label>
+        <input type="text" id="node-input-name" placeholder="My fhir node">
+    </div>
+    <div class="form-row">
+        <label for="node-input-url"><i class="fa fa-tag" aria-hidden="true"></i> FHIR server URL</label>
+        <input type="text" id="node-input-url" placeholder="Ex.. https://hapi.fhir.org/baseR4/Patient">
+    </div>
+    <div class="form-row">
+        <label for="node-input-method"><i class="icon-tag"></i> HTTP method</label>
+        <select id="node-input-method" onchange="toggleBodyInput(this)">
+            <option value="GET">GET</option>
+            <option value="POST">POST</option>
+            <!-- Agrega más métodos HTTP si es necesario -->
+        </select>
+    </div>
+    <div class="form-row" id="body-input-row" style="display: none;">
+        <label for="node-input-body"><i class="fa fa-tag" aria-hidden="true"></i> Body</label>
+        <textarea type="text" id="node-input-body" placeholder="Body of the POST request"></textarea>
+    </div>
+</script>
+
+<script type="text/javascript">
+    function toggleBodyInput(selectElement) {
+        const bodyInputRow = document.getElementById('body-input-row');
+        const selectedValue = selectElement.value;
+        bodyInputRow.style.display = selectedValue === 'POST' ? 'block' : 'none';
+    }
+</script>

@@ -1,0 +1,41 @@
+<script type="text/javascript">
+    RED.nodes.registerType('fh-planner', {
+        category: 'fhir fhandango',
+        defaults: {
+            field1: { value: "" },
+            field2: { value: "" },
+            field3: { value: "" },
+            field4: { value: "" },
+            // Repetir para field3, field4, field5
+        },
+        inputs:1,
+        outputs:1,
+        color: "#E6E0F8",
+        icon: "file.png",
+        align: "right",
+        label: function() {
+            return this.name || "fh-planner";
+        }
+    });
+</script>
+
+
+<script type="text/html" data-template-name="fh-planner">
+    <div class="form-row">
+        <label for="node-input-field1">Field 1</label>
+        <input type="text" id="node-input-field1" placeholder="Enter value for field 1">
+    </div>
+    <div class="form-row">
+        <label for="node-input-field1">Field 2</label>
+        <input type="text" id="node-input-field2" placeholder="Enter value for field 2">
+    </div>
+    <div class="form-row">
+        <label for="node-input-field1">Field 3</label>
+        <input type="text" id="node-input-field3" placeholder="Enter value for field 3">
+    </div>
+    <div class="form-row">
+        <label for="node-input-field1">Field 4</label>
+        <input type="text" id="node-input-field4" placeholder="Enter value for field 4">
+    </div>
+    <!-- Repetir para field2, field3, field4, field5 -->
+</script>

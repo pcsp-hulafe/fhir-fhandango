@@ -1,0 +1,22 @@
+<script type="text/javascript">
+    RED.nodes.registerType('fh-resource filter', {
+        category: 'fhir fhandango',
+        color: '#a6bbcf',
+        defaults: {
+            resourceType: { value: "", required: true }
+        },
+        inputs: 1,
+        outputs: 1,
+        icon: "font-awesome/fa-filter",
+        label: function() {
+            return this.resourceType || "fh-resource filter";
+        }
+    });
+</script>
+
+<script type="text/html" data-template-name="fh-resource filter">
+    <div class="form-row">
+        <label for="node-input-resourceType"><i class="fa fa-tag" aria-hidden="true"></i>  Filter by ..</label>
+        <input type="text" id="node-input-resourceType" placeholder="Ej: Patient, Observation">
+    </div>
+</script>

@@ -1,0 +1,8 @@
+# Node-RED Execution Directory
+node-execution/
+
+# Node modules
+node_modules/
+
+# Logs
+*.log
