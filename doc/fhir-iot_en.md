@@ -145,3 +145,97 @@ The IoT device was programmed using C++ and the VSCode code editor with the Plat
 Several tests were carried out, data was sent in a simple way with mqtt, and FHIR was even used from the same IoT device, sending resources similar to the following.
 
 
+```json
+{
+  "resourceType": "Observation",
+  "id": "iot-temperature-humidity-observation",
+  "status": "final",
+  "category": [
+    {
+      "coding": [
+        {
+          "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+          "code": "vital-signs",
+          "display": "Vital Signs"
+        }
+      ]
+    }
+  ],
+  "code": {
+    "coding": [
+      {
+        "system": "http://loinc.org",
+        "code": "LA6576-8",
+        "display": "Ambient temperature and humidity"
+      }
+    ]
+  },
+  "subject": {
+    "reference": "Patient/example"
+  },
+  "device": {
+    "display": "IoT Temperature & Humidity Sensor"
+  },
+  "effectiveDateTime": "2023-09-15T10:30:00Z",
+  "component": [
+    {
+      "code": {
+        "coding": [
+          {
+            "system": "http://loinc.org",
+            "code": "8310-5",
+            "display": "Body temperature"
+          }
+        ]
+      },
+      "valueQuantity": {
+        "value": 22.2,
+        "unit": "degrees Celsius",
+        "system": "http://unitsofmeasure.org",
+        "code": "Cel"
+      }
+    },
+    {
+      "code": {
+        "coding": [
+          {
+            "system": "http://loinc.org",
+            "code": "Humidity",
+            "display": "Ambient humidity"
+          }
+        ]
+      },
+      "valueQuantity": {
+        "value": 60,
+        "unit": "%",
+        "system": "http://unitsofmeasure.org",
+        "code": "%"
+      }
+    }
+  ]
+}
+```
+
+
+Finally, we obtain the measurements from the IoT device through an MQTT broker configured using the basic tools provided by the Node-Red application.
+
+This allows us to easily monitor the data and validate it if necessary, all before entering it into the corresponding registry of the FHIR server. This also allows us to automate actions on the fly, sending messages, etc.
+
+## Conclusions
+
+With the technologies we currently have, FHIR-IoT integration is not very complex. During this learning process, the following was also observed. For example, the use of intermediate nodes to ensure data integrity, the use of services that take care of transforming the data correctly, and the use of standards like MQTT (with TLS) should be taken into account in developments for production.
+
+The development of IoT medical devices can become simple to integrate in this way, as it is the clinical institution that obtains the data through its own tools and can integrate those data for automation and/or storage in multiple ways.
+
+The flexibility of FHIR, as well as its ease of use, allows us to integrate data even in low-power IoT devices like the ESP32. Being based on JSON, it is easily integrated into IoT devices. It is even possible to establish specifications for communication between devices that include resources like Device that include timestamps and/or relevant medical data within a Transaction resource. However, it is important to highlight the limitation of these devices, which, having limited memory and using protocols with a low data transmission capacity, will not allow us to send large documents, but this is an obvious conclusion since no one expects a low-capacity IoT device to send the data of an MRI, for which there are already protocols like HTTP and/or FTP.
+
+### Future Developments
+
+This repository is only a proof of concept, in the future more actions will be attempted such as:
+
+- Use of multiple clients and load tests with mosquitto_pub/sub.
+- Advanced monitoring of MQTT, possible integrations with Grafana and other BI applications.
+- Development of a more precise specification for IoT devices.
+- Testing error correction systems and data insertion in the FHIR Server.
+- Integration with home automation platforms like Home Assistant/CASA.
+
